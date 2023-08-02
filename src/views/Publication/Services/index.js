@@ -22,6 +22,7 @@ import * as Red5 from './Red5';
 import * as Restream from './Restream';
 import * as RTMP from './RTMP';
 import * as RTSP from './RTSP';
+import * as SmoothStreaming from './SmoothStreaming'
 import * as SRT from './SRT';
 import * as Trovo from './Trovo';
 import * as Telegram from './Telegram';
@@ -100,6 +101,7 @@ registry.Register(DASH);
 registry.Register(SRT);
 registry.Register(UDP);
 registry.Register(MPEGTS);
+registry.Register(SmoothStreaming);
 registry.Register(Framebuffer);
 
 export default registry;
