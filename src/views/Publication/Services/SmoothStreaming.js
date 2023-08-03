@@ -123,7 +123,7 @@ function Service(props) {
 			} else if (settings.options[key].length === 0) {
 				continue;
 			} else if (key === 'audio_language') {
-				options.push('-metadata:a', 'language=' + String(settings.options.audio_language));
+				options.push('-metadata:s:a', 'language=' + String(settings.options.audio_language));
 			} else if (typeof settings.options[key] === 'boolean') {
 				options.push('-' + key, Number(settings.options[key]));
 			} else {
