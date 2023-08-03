@@ -116,6 +116,14 @@ function Service(props) {
 			}
 			if (typeof settings.options[key] === 'boolean') {
 				options.push('-' + key, Number(settings.options[key]));
+			} else if (key === 'movflags') {
+				let flags = '';
+
+				settings.options[key].forEach((flag) => {
+					flags += '+' + flag;
+				});
+
+				options.push('-movflags', String(flags));
 			} else {
 				options.push('-' + key, String(settings.options[key]));
 			}
