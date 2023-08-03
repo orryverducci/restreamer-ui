@@ -70,7 +70,7 @@ function init(settings) {
 	};
 
 	initSettings.options = {
-		frag_duration: 2,
+		frag_duration: 2000000,
 		frag_size: '',
 		min_frag_duration: '',
 		movflags: ['frag_keyframe', 'default_base_moof'],
