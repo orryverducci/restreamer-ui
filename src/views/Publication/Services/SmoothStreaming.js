@@ -108,7 +108,7 @@ function Service(props) {
 	};
 
 	const createOutput = (settings) => {
-		const options = ['-f', 'ismv'];
+		const options = ['-f', 'ismv', '-avoid_negative_ts', 'make_non_negative'];
 
 		for (let key in settings.options) {
 			if (key === 'movflags') {
