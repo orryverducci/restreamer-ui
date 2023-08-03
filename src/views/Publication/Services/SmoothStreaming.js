@@ -70,7 +70,7 @@ function init(settings) {
 	};
 
 	initSettings.options = {
-		frag_duration: 2,
+		frag_duration: 2000000,
 		frag_size: '',
 		min_frag_duration: '',
 		movflags: ['frag_keyframe', 'default_base_moof'],
@@ -111,19 +111,18 @@ function Service(props) {
 		const options = ['-f', 'ismv'];
 
 		for (let key in settings.options) {
-			if (settings.options[key].length === 0) {
-				continue;
-			}
-			if (typeof settings.options[key] === 'boolean') {
-				options.push('-' + key, Number(settings.options[key]));
-			} else if (key === 'movflags') {
-				let flags = '';
+			if (key === 'movflags') {
+				let flags = '+isml';
 
 				settings.options[key].forEach((flag) => {
 					flags += '+' + flag;
 				});
 
 				options.push('-movflags', String(flags));
+			} else if (settings.options[key].length === 0) {
+				continue;
+			} else if (typeof settings.options[key] === 'boolean') {
+				options.push('-' + key, Number(settings.options[key]));
 			} else {
 				options.push('-' + key, String(settings.options[key]));
 			}
