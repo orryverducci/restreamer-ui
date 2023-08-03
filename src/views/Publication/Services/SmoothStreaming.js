@@ -70,6 +70,7 @@ function init(settings) {
 	};
 
 	initSettings.options = {
+		audio_language: 'eng',
 		frag_duration: 2000000,
 		frag_size: '',
 		min_frag_duration: '',
@@ -108,7 +109,7 @@ function Service(props) {
 	};
 
 	const createOutput = (settings) => {
-		const options = ['-f', 'ismv'];
+		const options = ['-f', 'ismv', '-avoid_negative_ts', 'make_non_negative'];
 
 		for (let key in settings.options) {
 			if (key === 'movflags') {
@@ -121,6 +122,8 @@ function Service(props) {
 				options.push('-movflags', String(flags));
 			} else if (settings.options[key].length === 0) {
 				continue;
+			} else if (key === 'audio_language') {
+				options.push('-metadata:a', 'language=' + String(settings.options.audio_language));
 			} else if (typeof settings.options[key] === 'boolean') {
 				options.push('-' + key, Number(settings.options[key]));
 			} else {
@@ -177,6 +180,21 @@ function Service(props) {
 					</AccordionSummary>
 					<AccordionDetails>
 						<Grid container spacing={2}>
+						<Grid item xs={12}>
+								<Typography variant="h3">
+									<Trans>Metadata</Trans>
+								</Typography>
+							</Grid>
+							<Grid item xs={12}>
+								<TextField
+									variant="outlined"
+									fullWidth
+									type="text"
+									label="Audio Language"
+									value={settings.options.audio_language}
+									onChange={handleChange('audio_language')}
+								/>
+							</Grid>
 							<Grid item xs={12}>
 								<Typography variant="h3">
 									<Trans>General</Trans>
